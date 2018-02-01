@@ -8,9 +8,9 @@ export class ValidationPipe implements PipeTransform<any> {
   // value: the current processed parameter
   // metadata: the current processed parameter's metadata
   async transform(value, metadata: ArgumentMetadata) {
-    console.log('metadata:', metadata);
     console.log('value:', value);
     const { metatype } = metadata;
+    console.log('metatype:', metatype, this.toValidate(metatype));
     if (!metatype || !this.toValidate(metatype)) {
       return value;
     }

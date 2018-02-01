@@ -1,6 +1,10 @@
 import { IsString, IsInt } from 'class-validator';
 
 export class CreateCatDto {
+
+  @IsInt()
+  readonly id: number;
+
   @IsString()
   readonly name: string;
 
