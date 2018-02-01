@@ -29,7 +29,7 @@ export class CatsController {
   @Delete()
   @UseFilters(new HttpExceptionFilter())
   async deleteOne() {
-    throw new ForbiddenException()
+    throw new ForbiddenException();
     // throw new HttpException({
     //   error: 'This is a custom message',
     //   code: 10010,
@@ -38,6 +38,6 @@ export class CatsController {
 
   @Get(':id')
   async findOne(@Param('id', new ParseIntPipe()) id) : Promise<Cat>{
-    return await this.catsService.findOne(id)
+    return await this.catsService.findOne(id);
   }
 }
