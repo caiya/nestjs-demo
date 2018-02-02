@@ -17,6 +17,8 @@ export class AuthService {
   }
 
   async validateUser(signedUser) : Promise<boolean> {
+
+    // 这里放置一些用户校验层的逻辑，比如用户是否存在等
     return true;
   }
 }

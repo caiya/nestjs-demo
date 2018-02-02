@@ -16,10 +16,9 @@ export class JwtStrategy extends Strategy {
     passport.use(this);
   };
 
+  // jwt认证通过会执行此回调
   public async verify(req, plyload, done) {
-    console.log('plyload', plyload);
     const isValid = await this.authService.validateUser(plyload);
-    console.log('isValid', isValid);
     if (!isValid) {
       return done('Unauthorized', false);
     }
