@@ -10,11 +10,11 @@ import { JwtStrategy } from './jwt.strategy';
 })
 export class AuthModule implements NestModule {
 
-  configure(consumer: MiddlewaresConsumer): void {
+  public configure(consumer: MiddlewaresConsumer) {
     consumer.apply(passport.authenticate('jwt', { session: false })).forRoutes({
       path: '/auth/authorized',
       method: RequestMethod.ALL
     });
   }
-
+  
 }
