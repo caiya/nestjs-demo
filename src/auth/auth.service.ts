@@ -16,7 +16,7 @@ export class AuthService {
     }
   }
 
-  async validateUser() : Promise<boolean> {
+  async validateUser(signedUser) : Promise<boolean> {
     return true;
   }
 }
