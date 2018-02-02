@@ -21,31 +21,33 @@ export class CatsController {
   constructor(private readonly catsService: CatsService) { };    // 将catSerivce加进来
 
   @Post()
-  @Roles('admin')
-  @UseGuards(RolesGuard)
+  // @Roles('admin')
+  // @UseGuards(RolesGuard)
   // @UsePipes(new ValidationPipe())   // 数据校验
-  async post( @Body() createCatDto: CreateCatDto): Promise<void> {
-    this.catsService.create(createCatDto);
+  async post( @Body() createCatDto: CreateCatDto): Promise<Cat> {
+    return await this.catsService.create(createCatDto);
   }
 
   @Get()
-  @UseInterceptors(TransformInterceptor)
+  // @UseInterceptors(TransformInterceptor)
   async findAll(): Promise<Cat[]> {
-    return this.catsService.findAll();
+    return await this.catsService.findAll();
   }
 
-  @Delete()
-  @UseFilters(new HttpExceptionFilter())
-  async deleteOne() {
-    throw new ForbiddenException();
+  @Delete(':id')
+  // @UseFilters(new HttpExceptionFilter())
+  async deleteOne(@Param('id') id) {
+    return await this.catsService.deleteOne(id);
+    // throw new ForbiddenException();
     // throw new HttpException({
     //   error: 'This is a custom message',
     //   code: 10010,
     // }, HttpStatus.FORBIDDEN)
   }
-
+  
+  // @Param('id', new ParseIntPipe()) id
   @Get(':id')
-  async findOne(@Param('id', new ParseIntPipe()) id) : Promise<Cat>{
+  async findOne(@Param('id') id) : Promise<Cat>{
     return await this.catsService.findOne(id);
   }
 }
